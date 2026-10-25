@@ -1,8 +1,9 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { Code2, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import type React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "./ui/Button";
+import Logo from "./Logo";
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -15,6 +16,15 @@ const navLinks = [
 
 function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
@@ -35,8 +45,9 @@ function Navbar() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6 }}
-        className="fixed top-0 left-0 right-0 z-50
-        transition-all duration-300"
+        className={`fixed top-0 left-0 right-0 z-50
+        transition-[background-color,box-shadow] duration-300
+        ${isScrolled ? "glass shadow-lg shadow-dark-900/50" : "bg-transparent"}`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-20">
@@ -47,12 +58,12 @@ function Navbar() {
             >
               <div
                 className="bg-linear-to-br from-primary
-               to-accent-blue relative w-9 h-9 flex items-center
+               to-accent-blue relative w-10 h-10 flex items-center
                 justify-center rounded-lg group-hover:shadow-lg
                 group-hover:shadow-primary/30 transition-shadow
                 duration-300"
               >
-                <Code2 className="font-bold text-white h-5 w-5" />
+                <Logo className="font-bold text-white h-8 w-8" />
               </div>
               <span className="text-lg font-bold text-text-primary">
                 Sardar<span className="text-primary-light">Balnour</span>
@@ -60,7 +71,7 @@ function Navbar() {
             </a>
 
             {/* Desktop navigation */}
-            <div className="hidden md:flex items-center gap-1">
+            <div className="hidden min-[925px]:flex items-center gap-1">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
@@ -77,7 +88,7 @@ function Navbar() {
             </div>
 
             {/* Desktop CTA */}
-            <div className="hidden md:flex items-center gap-3">
+            <div className="hidden min-[925px]:flex items-center gap-3">
               <Button variant="ghost" size="sm">
                 Login
               </Button>
@@ -89,7 +100,7 @@ function Navbar() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 text-text-secondary
+              className="min-[925px]:hidden p-2 text-text-secondary
               hover:text-text-primary transition-colors "
               aria-label="Toggle menu"
             >
@@ -107,7 +118,7 @@ function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 md:hidden"
+            className="fixed inset-0 z-40 min-[925px]:hidden"
           >
             <div
               className="absolute inset-0 bg-dark-900/80 backdrop-blur-sm"

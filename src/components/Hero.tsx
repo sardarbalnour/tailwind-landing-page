@@ -28,7 +28,8 @@ const codeLines = [
 
 function Hero() {
   return (
-    <section>
+    <section id="home" className="relative min-h-screen
+    flex items-center pt-20 overflow-hidden">
       {/* Background Effects */}
       <>
         <div className="absolute inset-0 bg-grid-pattern" />

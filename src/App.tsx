@@ -2,6 +2,7 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Features from "./components/Features";
 import Courses from "./components/Courses";
+import Stats from "./components/Stats";
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
         <Features />
         {/* Courses */}
         <Courses />
+        {/* Stats */}
+        <Stats/>
       </main>
     </div>
   );

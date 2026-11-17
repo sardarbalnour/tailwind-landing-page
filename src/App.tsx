@@ -3,6 +3,7 @@ import Hero from "./components/Hero";
 import Features from "./components/Features";
 import Courses from "./components/Courses";
 import Stats from "./components/Stats";
+import Testimonials from "./components/Testimonials";
 
 function App() {
   return (
@@ -19,7 +20,9 @@ function App() {
         {/* Courses */}
         <Courses />
         {/* Stats */}
-        <Stats/>
+        <Stats />
+        {/* Testimonials */}
+        <Testimonials />
       </main>
     </div>
   );

@@ -41,7 +41,7 @@ export default function SectionHeading({
       </h2>
       {description && (
         <p
-          className="mt-5 text-lg text-left
+          className="mt-5 text-lg text-left px-3
          text-text-secondary leading-relaxed"
         >
           {description}

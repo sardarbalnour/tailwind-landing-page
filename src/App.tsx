@@ -4,6 +4,7 @@ import Features from "./components/Features";
 import Courses from "./components/Courses";
 import Stats from "./components/Stats";
 import Testimonials from "./components/Testimonials";
+import Pricing from "./components/Pricing";
 
 function App() {
   return (
@@ -23,6 +24,8 @@ function App() {
         <Stats />
         {/* Testimonials */}
         <Testimonials />
+        {/* Pricing */}
+        <Pricing />
       </main>
     </div>
   );
